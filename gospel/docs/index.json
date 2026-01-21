@@ -1,0 +1,45 @@
+[
+  {
+    "slug": "digno-y-santo",
+    "title": "Digno y Santo",
+    "artist": "Israel Houghton",
+    "key": "E",
+    "audios": {},
+    "content": "[VERSO]\n<soprano>Eres digno y santo</soprano>\n<alto>Digno y santo</alto>\n<tenor>Digno y santo</tenor>\nSeñor\n\n[CORO]\n<todos>Te alabamos, Señor</todos>\nPorque eres bueno\n<solista>Porque tu misericordia es para siempre</solista>\n\n[PUENTE]\n<soprano>Santo</soprano>\n<alto>Santo</alto>\n<tenor>Santo</tenor>\nEres Tú"
+  },
+  {
+    "slug": "hola-y-hola",
+    "title": "Hola Y Hola",
+    "artist": "Elevation Worship",
+    "key": "F#m - G#m",
+    "audios": {
+      "Neon": "canciones/hola-y-hola/Neon.mp3",
+      "spongebob-fail": "canciones/hola-y-hola/spongebob-fail.mp3"
+    },
+    "content": "esto está en source"
+  },
+  {
+    "slug": "santo-por-siempre",
+    "title": "Santo por Siempre",
+    "artist": "Elevation Worship",
+    "key": "G",
+    "audios": {},
+    "content": "[VERSO]\nBendito sea <soprano>Tu</soprano> nombre\nJesús, <tenor>Te adoramos</tenor>\n\n[CORO]\n<soprano>Santo</soprano>\n<alto>Santo</alto>\n<tenor>Santo</tenor>\npor siempre"
+  },
+  {
+    "slug": "undefined-hymn",
+    "title": "Himno Indefinido",
+    "artist": "Desconocido",
+    "key": "C",
+    "audios": {},
+    "content": "[VERSO 1]\nEsta es una <soprano>canción de prueba</soprano>\nPara verificar el sistema\n<alto>Todos cantan juntos</alto>\nEn armonía perfecta\n\n[CORO]\n<todos>Gloria, gloria</todos>\nCantamos sin cesar\n<tenor>Gloria, gloria</tenor>\nPor la eternidad\n\n[FINAL]\n<solista>Amén</solista>"
+  },
+  {
+    "slug": "way-maker",
+    "title": "Way Maker (Aquí Estás)",
+    "artist": "Sinach",
+    "key": "B",
+    "audios": {},
+    "content": "[VERSO 1]\n<soprano>Aquí estás</soprano>\nTe vemos mover\nTe adoraré\nTe adoraré\n\n[CORO]\n<todos>Milagroso, abres camino\nCumples promesas\nLuz en tinieblas\nMi Dios, así eres Tú</todos>\n\n[PUENTE]\n<tenor>Aunque no pueda ver, estás obrando</tenor>\n<alto>Aunque no pueda ver, estás obrando</alto>\n<soprano>Siempre estás, siempre estás obrando</soprano>\n<todos>Siempre estás, siempre estás obrando</todos>"
+  }
+]

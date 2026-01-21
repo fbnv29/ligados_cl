@@ -1,0 +1,21 @@
+---
+title: "Digno y Santo"
+artist: "Israel Houghton"
+key: "E"
+---
+[VERSO]
+<soprano>Eres digno y santo</soprano>
+<alto>Digno y santo</alto>
+<tenor>Digno y santo</tenor>
+Señor
+
+[CORO]
+<todos>Te alabamos, Señor</todos>
+Porque eres bueno
+<solista>Porque tu misericordia es para siempre</solista>
+
+[PUENTE]
+<soprano>Santo</soprano>
+<alto>Santo</alto>
+<tenor>Santo</tenor>
+Eres Tú

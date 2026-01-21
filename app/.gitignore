@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# System
+.DS_Store
+.env
+
+# Reference/Source Materials (exclude from repo)
+excalidraw-master/
+midi-jar-main/
+vdo.ninja-develop/
+*.pdf
+*.zip
+
+# Logs
+npm-debug.log*

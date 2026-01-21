@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repertorio Gospel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- SIDEBAR / SONG LIST -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <div class="brand-container">
+                    <img src="logo.png" alt="Gospel Praise Concepción Logo" class="brand-logo">
+                    <h1>Gospel Praise<br>Concepción</h1>
+                </div>
+                <button id="eventsBtn" class="events-btn" title="Ver Eventos">Eventos</button>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar canción...">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </header>
+            <nav class="song-list" id="songList">
+                <!-- Song items injected here -->
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT / SONG DISPLAY -->
+        <main class="main-content" id="mainContent">
+            <div class="empty-state">
+                <h2>Selecciona una canción</h2>
+                <p>Elige un tema del repertorio para ver la letra y voces.</p>
+                <div id="eventos-lista" class="eventos-container"></div>
+            </div>
+
+            <div id="songView" class="song-view hidden">
+                <header class="song-header">
+                    <button id="backButton" class="back-btn hidden">← Volver</button>
+                    <div class="song-meta">
+                        <h2 id="songTitle">Título de la Canción</h2>
+                        <h3 id="songArtist">Artista</h3>
+                    </div>
+                    <div class="song-key" id="songKey">Ton: G</div>
+                </header>
+
+                <div class="lyrics-container" id="lyricsContainer">
+                    <!-- Lyrics injected here -->
+                </div>
+
+                <div class="audio-controls" id="audioControls">
+                    <!-- Audio players injected here -->
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

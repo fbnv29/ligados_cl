@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Mac
+.DS_Store
+
+# Environment variables
+.env
+
+# Build outputs
+build/
+dist/
+docs/ # Check if docs is needed for gh-pages? User mentioned render, so maybe we keep docs if it's the build output for gospel?
+# Gospel README says "docs/: Contiene el sitio web generado". If we deploy to Render, we might rename this or configure Render to publish 'gospel/docs'. 
+# For now, let's NOT ignore docs/ because gospel relies on it.
+
+# IDE
+.vscode/
+.idea/
+
+# System
+thumbs.db

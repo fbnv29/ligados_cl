@@ -1,0 +1,205 @@
+PROYECTO REPERTORIO GOSPEL
+GUÍA COMPLETA PARA SUBIR CANCIONES (v1.0)
+
+==================================================
+1. IDEA GENERAL
+==================================================
+
+Este proyecto funciona con tres capas claras:
+
+HUMANOS  -> escriben letras y suben audios
+PYTHON   -> ordena, valida y prepara los datos
+WEB      -> muestra todo bonito y usable
+
+Python NO es un servidor.
+Python NO corre en la web.
+Python SOLO se ejecuta antes de subir a GitHub.
+
+==================================================
+2. ESTRUCTURA DEL PROYECTO
+==================================================
+
+repertorio-gospel/
+│
+├── web/                  ← lo que se publica (GitHub Pages)
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   ├── index.json
+│   └── canciones/
+│
+├── source/               ← aquí se agregan canciones
+│   └── canciones/
+│       └── nombre-cancion/
+│           ├── letra.txt
+│           ├── soprano.mp3
+│           ├── alto.mp3
+│           ├── tenor.mp3
+│           └── solista.mp3
+│
+├── tools/                ← herramientas internas
+│   ├── build.py
+│   ├── validate.py
+│   └── config.py
+│
+├── .gitignore
+└── README.md
+
+==================================================
+3. FLUJO PARA SUBIR UNA CANCIÓN
+==================================================
+
+DIAGRAMA:
+
+[ Crear carpeta ]
+        ↓
+[ Escribir letra.txt ]
+        ↓
+[ Agregar audios ]
+        ↓
+[ Ejecutar Python ]
+        ↓
+[ Subir a GitHub ]
+        ↓
+[ Canción visible en la web ]
+
+==================================================
+4. PASO A PASO DETALLADO
+==================================================
+
+----------------------------------
+PASO 1 — Crear carpeta
+----------------------------------
+
+Ubicación:
+source/canciones/
+
+Nombre de carpeta:
+- minúsculas
+- sin acentos
+- sin espacios
+- usar guiones
+
+Ejemplos correctos:
+santo-por-siempre
+digno-es-el
+
+Ejemplos incorrectos:
+Santo por Siempre
+digno_es_él
+
+----------------------------------
+PASO 2 — Crear letra.txt
+----------------------------------
+
+Archivo:
+source/canciones/santo-por-siempre/letra.txt
+
+Estructura obligatoria:
+
+METADATA (arriba del todo, encerrada en ---):
+
+---
+title: "Santo por Siempre"
+artist: "Elevation Worship"
+key: "G"
+---
+
+SECCIONES (no colorean):
+
+[VERSO]
+[CORO]
+[PUENTE]
+[FINAL]
+
+COLORES DE VOZ (solo palabras):
+
+<soprano>texto</soprano>
+<alto>texto</alto>
+<tenor>texto</tenor>
+<solista>texto</solista>
+<todos>texto</todos>
+
+Ejemplo completo:
+
+[VERSO]
+Bendito sea <soprano>Tu</soprano> nombre
+Jesús, <tenor>Te adoramos</tenor>
+
+[CORO]
+<soprano>Santo</soprano>
+<alto>Santo</alto>
+<tenor>Santo</tenor>
+por siempre
+
+----------------------------------
+PASO 3 — Agregar audios
+----------------------------------
+
+Audios opcionales, pero recomendados:
+
+soprano.mp3
+alto.mp3
+tenor.mp3
+solista.mp3
+acompanamiento.mp3
+
+Reglas:
+- mp3 livianos
+- nombres simples
+- sin espacios
+
+----------------------------------
+PASO 4 — Ejecutar Python
+----------------------------------
+
+Desde la raíz del proyecto:
+
+python tools/build.py
+
+Qué hace Python:
+- lee todas las carpetas
+- valida estructura
+- genera web/index.json
+- prepara la web
+
+----------------------------------
+PASO 5 — Subir a GitHub
+----------------------------------
+
+git add .
+git commit -m "Agrega canción: Santo por Siempre"
+git push
+
+GitHub Pages se actualiza automáticamente.
+
+==================================================
+5. REGLAS IMPORTANTES
+==================================================
+
+- No editar archivos dentro de /web a mano
+- No cambiar nombres de etiquetas
+- No usar HTML dentro de letra.txt
+- Si algo no aparece, revisar consola de Python
+- .DS_Store siempre ignorado
+
+==================================================
+6. FILOSOFÍA DEL SISTEMA
+==================================================
+
+La web debe ser:
+- simple
+- rápida
+- tonta
+
+Python debe ser:
+- estricto
+- claro
+- útil
+
+Las personas deben:
+- escribir música
+- no pelear con tecnología
+
+==================================================
+FIN DEL DOCUMENTO

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rider Técnico - Gospel Praise Concepción</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="fab-container">
+        <button class="btn-float" onclick="window.print()" title="Imprimir / Guardar PDF">
+            <i class="fas fa-print"></i>
+        </button>
+    </div>
+
+    <div class="container">
+
+        <header>
+            <h1 id="conf-subtitle">Gospel Praise</h1>
+            <div class="subtitle" id="conf-title">Rider Técnico</div>
+            <div class="last-update" id="conf-last-update"></div>
+        </header>
+
+        <section>
+            <h2>Input List</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">CH</th>
+                            <th>Instrumento</th>
+                            <th>Microfonía</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="input-list-body">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2>Monitoreo & PA</h2>
+            <p>Se requiere un sistema de PA profesional estéreo de 3 vías activo, capaz de cubrir uniformemente la
+                audiencia con 110dB SPL continuos.</p>
+            <div class="list-grid" id="monitor-list">
+            </div>
+        </section>
+
+        <section>
+            <h2>Backline</h2>
+            <div class="list-grid" id="backline-list">
+            </div>
+        </section>
+
+        <section>
+            <h2>Stage Plot</h2>
+            <div class="stage-plot-container">
+                <img id="stage-plot-img" src="" alt="Stage Plot"
+                    style="max-width: 100%; max-height: 100%; display: none;">
+            </div>
+            <p style="text-align: center; font-size: 14px; color: var(--secondary-text);">
+                * La disposición puede variar según el tamaño del escenario.
+            </p>
+        </section>
+
+        <section>
+            <h2>Contacto</h2>
+            <div class="contact-grid" id="contact-container">
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Gospel Praise Concepción.</p>
+        </footer>
+
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

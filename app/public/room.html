@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de Clase - Ligados Online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="room-container">
+        <!-- Banner Superior (Contexto, Timer, Hora) -->
+        <div class="top-banner">
+            <div class="banner-section left">
+                <!-- Branding -->
+                <img src="img/logo.png" alt="Ligados Online" class="nav-logo">
+
+                <div class="room-info-group">
+                    <span class="room-label">Sala</span>
+                    <span id="room-code-display" class="room-code">Cargando...</span>
+                </div>
+
+                <button id="copy-room-btn" class="icon-btn-text" title="Copiar al portapapeles">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="banner-section center" id="timer-container">
+                <!-- Se llena dinámicamente según rol (Host/Guest) -->
+                <div id="timer-display" class="timer-display hidden">00:00</div>
+                <div id="timer-controls" class="timer-controls hidden">
+                    <input type="number" id="timer-input" placeholder="Min" min="1" max="60" value="15">
+                    <button id="start-timer-btn" class="icon-btn-small">▶</button>
+                    <button id="stop-timer-btn" class="icon-btn-small">⏹</button>
+                </div>
+            </div>
+
+            <div class="banner-section right">
+                <div id="clock-display" class="clock-display">00:00</div>
+            </div>
+        </div>
+
+        <!-- Area de Trabajo (Video izquierda, Pizarra derecha) -->
+        <div class="workspace">
+            <div class="video-section" id="video-grid">
+                <!-- Videos dinámicos -->
+            </div>
+
+            <div class="tools-panel">
+                <div class="whiteboard-wrapper">
+                    <canvas id="whiteboard"></canvas>
+
+                    <!-- Toolbar Flotante Estilo Excalidraw -->
+                    <div class="whiteboard-controls floating-toolbar">
+                        <!-- Barra de Herramientas Flotante -->
+                        <button id="pencil-btn" class="tool-btn active" title="Lápiz">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M7.643 15.69 15.417 7.917a2.357 2.357 0 1 0-3.334-3.334L4.31 12.357a3.333 3.333 0 0 0-.977 2.357v1.953h1.953c.884 0 1.732-.352 2.357-.977Z" />
+                                <path d="M11.25 5.417 3.333 3.333" />
+                            </svg>
+                        </button>
+                        <button id="eraser-btn" class="tool-btn" title="Borrador">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3" />
+                                <path d="M18 13.3l-6.3 -6.3" />
+                            </svg>
+                        </button>
+
+                        <div class="toolbar-divider"></div>
+
+                        <input type="color" id="color-picker" value="#000000" title="Color">
+                        <input type="range" id="brush-size" min="2" max="20" value="2" title="Grosor">
+
+                        <div class="toolbar-divider"></div>
+
+                        <button id="clear-btn" class="tool-btn danger" title="Borrar Todo">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 7l16 0" />
+                                <path d="M10 11l0 6" />
+                                <path d="M14 11l0 6" />
+                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                            </svg>
+                        </button>
+
+                        <div class="toolbar-divider"></div>
+                    </div>
+
+                    <!-- Settings Modal -->
+                    <div id="settings-modal" class="modal hidden">
+                        <div class="modal-content glass-panel">
+                            <div class="modal-header">
+                                <h2>Configuración General</h2>
+                                <button id="close-settings-btn" class="icon-btn-text">✕</button>
+                            </div>
+
+                            <div class="modal-body">
+                                <h3>Audio y Video</h3>
+                                <div class="form-group">
+                                    <label for="audio-input-select">🎤 Micrófono</label>
+                                    <select id="audio-input-select" class="glass-select"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="video-input-select">📹 Cámara</label>
+                                    <select id="video-input-select" class="glass-select"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="audio-output-select">🔊 Altavoces</label>
+                                    <select id="audio-output-select" class="glass-select">
+                                        <option value="default">Por Defecto</option>
+                                    </select>
+                                    <small class="hint">"Altavoces" solo soportado en Chrome/Edge.</small>
+                                </div>
+
+                                <hr class="modal-divider">
+
+                                <h3>Piano MIDI</h3>
+                                <div class="form-group">
+                                    <label for="midi-input-select">🎹 Entrada MIDI</label>
+                                    <select id="midi-input-select" class="glass-select">
+                                        <option value="">Buscando dispositivos...</option>
+                                    </select>
+                                    <small class="hint">Conecta tu teclado y recarga si no aparece.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Piano Container (Secciones abajo) -->
+        <div id="piano-container-wrapper" style="display: none;">
+            <div id="virtual-piano"></div>
+            <div id="midi-status">Esperando dispositivo MIDI...</div>
+        </div>
+
+        <!-- Controles de Llamada -->
+        <div class="controls-bar">
+            <button class="control-btn" id="settings-btn" title="Configuración">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                        d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                </svg>
+            </button>
+            <button class="control-btn" id="toggle-piano-btn" title="Mostrar/Ocultar Piano">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                </svg>
+            </button>
+            <button class="control-btn" id="mute-btn" title="Silenciar Micrófono">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+            </button>
+            <button class="control-btn" id="video-btn" title="Apagar Cámara">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+            </button>
+            <button class="control-btn" id="share-screen-btn" title="Compartir Pantalla">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+            </button>
+            <button class="control-btn danger" onclick="leaveRoom()" title="Salir">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/webrtc.js"></script>
+    <script src="js/whiteboard.js"></script>
+    <script src="js/banner.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/piano.js"></script>
+    <script>
+        function leaveRoom() {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+
+</html>

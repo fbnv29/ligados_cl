@@ -1,0 +1,19 @@
+---
+title: "Himno Indefinido"
+artist: "Desconocido"
+key: "C"
+---
+[VERSO 1]
+Esta es una <soprano>canción de prueba</soprano>
+Para verificar el sistema
+<alto>Todos cantan juntos</alto>
+En armonía perfecta
+
+[CORO]
+<todos>Gloria, gloria</todos>
+Cantamos sin cesar
+<tenor>Gloria, gloria</tenor>
+Por la eternidad
+
+[FINAL]
+<solista>Amén</solista>

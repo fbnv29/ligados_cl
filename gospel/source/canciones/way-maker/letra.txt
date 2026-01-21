@@ -1,0 +1,22 @@
+---
+title: "Way Maker (Aquí Estás)"
+artist: "Sinach"
+key: "B"
+---
+[VERSO 1]
+<soprano>Aquí estás</soprano>
+Te vemos mover
+Te adoraré
+Te adoraré
+
+[CORO]
+<todos>Milagroso, abres camino
+Cumples promesas
+Luz en tinieblas
+Mi Dios, así eres Tú</todos>
+
+[PUENTE]
+<tenor>Aunque no pueda ver, estás obrando</tenor>
+<alto>Aunque no pueda ver, estás obrando</alto>
+<soprano>Siempre estás, siempre estás obrando</soprano>
+<todos>Siempre estás, siempre estás obrando</todos>

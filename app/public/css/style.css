@@ -1,0 +1,1034 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Brand Palette */
+    --brand-blue: #0b2046;
+    --brand-white: #FFF4e7;
+    --brand-accent: #EEA213;
+
+    /* Theme Mappings */
+    --bg-color: var(--brand-blue);
+    --secondary-bg: #091a38;
+    /* Slightly darker/lighter var of blue */
+    --text-color: var(--brand-white);
+    --accent-color: var(--brand-accent);
+    --border-color: rgba(255, 244, 231, 0.1);
+    /* Low opacity white */
+
+    /* Piano Colors */
+    --piano-bg: #051024;
+    --key-active-local: var(--brand-accent);
+    --key-active-remote: #22c55e;
+}
+
+body {
+    margin: 0;
+    font-family: 'Futura', 'Century Gothic', 'Tw Cen MT', system-ui, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Prevent scroll if we fit */
+}
+
+html {
+    height: 100%;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* --- LANDING PAGE (Contextual - Pro Polish) --- */
+.landing-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: radial-gradient(circle at center, var(--secondary-bg) 0%, var(--brand-blue) 100%);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.hero-logo {
+    height: 90px;
+    width: auto;
+    margin-bottom: 0;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    transition: transform 0.5s ease;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--brand-white);
+    margin: 1.5rem 0 0.5rem 0;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    line-height: 1.1;
+    display: block;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--brand-white);
+    opacity: 0.85;
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.action-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- RESPONSIVE SCALING (Vertical) --- */
+/* If screen is short, shrink elements to FIT without scroll */
+@media (max-height: 850px) {
+    .hero-logo {
+        height: 70px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        margin: 1rem 0 0.5rem 0;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        max-width: 480px;
+    }
+
+    .action-card {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+}
+
+@media (max-height: 650px) {
+    .hero-logo {
+        height: 50px;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+        margin: 0.5rem 0;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .landing-hero {
+        padding: 1rem;
+    }
+}
+
+/* --- ROOM LAYOUT --- */
+.room-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* WORKSPACE: Área compartida (Video | Pizarra) */
+.workspace {
+    flex: 1;
+    /* Ocupa todo el espacio disponible */
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+    min-height: 0;
+    /* Importante para flex nested scrolling */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    /* Suavizar el cambio de tamaño cuando sale el piano */
+}
+
+/* Sección Video (Izquierda) */
+.video-section {
+    flex: 3;
+    /* Más ancho para videos */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: minmax(200px, 1fr);
+    gap: 1rem;
+    align-content: center;
+    /* Centrar verticalmente */
+    /* Centrar verticalmente */
+    overflow-y: auto;
+    border-radius: 12px;
+
+    /* Hide scrollbar visually but allow scroll */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.video-section::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.video-wrapper {
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    aspect-ratio: 16/9;
+    max-height: 100%;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sección Herramientas / Pizarra (Derecha) */
+.tools-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    /* Clean look: Remove backgrounds and heavy borders to match video */
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    min-width: 300px;
+    position: relative;
+    box-shadow: none;
+}
+
+.whiteboard-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    /* Para posicionar el banner absoluto si se quiere overlay, o flex column */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Top Banner (Premium Glassmorphism) --- */
+.top-banner {
+    flex: 0 0 52px;
+    /* Un poco más de presencia */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    background: rgba(255, 255, 255, 0.90);
+    /* Más blanco, casi solido */
+    backdrop-filter: blur(25px) saturate(200%);
+    /* Efecto glass premium */
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    /* Borde sutil pero definido */
+    z-index: 100;
+    font-size: 0.95rem;
+    /* Texto base un poco más grande */
+    color: #111827;
+    /* Negro suave, alto contraste */
+    font-family: 'Inter', sans-serif;
+    /* Sombra muy sutil para profundidad */
+    height: 60px;
+    /* Slightly taller for logo */
+    box-sizing: border-box;
+    overflow: hidden;
+    /* Prevent expansion */
+}
+
+/* Nav Logo */
+.nav-logo {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+}
+
+.room-info-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.room-info-group .room-label {
+    font-size: 0.65rem;
+    line-height: 1;
+    color: var(--brand-blue);
+    opacity: 0.7;
+}
+
+.room-info-group .room-code {
+    font-size: 0.85rem;
+    padding: 2px 6px;
+    background: rgba(11, 32, 70, 0.05);
+    border: 1px solid rgba(11, 32, 70, 0.1);
+}
+
+.banner-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    height: 100%;
+    /* Fill banner height */
+}
+
+.banner-section.center {
+    justify-content: center;
+    position: relative;
+    /* For potential absolute centering if needed */
+}
+
+.banner-section.right {
+    justify-content: flex-end;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Room Code */
+.room-label {
+    font-weight: 600;
+    color: #4b5563;
+    /* Gris medio-oscuro, legible */
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+}
+
+.room-code {
+    font-family: 'Inter', monospace;
+    font-weight: 700;
+    /* Más peso */
+    color: #111827;
+    /* Negro puro */
+    background: rgba(0, 0, 0, 0.03);
+    padding: 4px 10px;
+    border-radius: 8px;
+    /* Bordes más suaves */
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.icon-btn-text {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border-radius: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    /* Botón táctil */
+}
+
+.icon-btn-text:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    color: #000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Timer Minimalista & Profesional */
+.timer-display {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #000;
+    font-feature-settings: "tnum";
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Efecto degradado sutil en el texto */
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Space for emergency button */
+    line-height: 1;
+    /* Prevent vertical expansion */
+}
+
+/* Emergency Stop Button injected by JS */
+#emergency-stop-btn {
+    background: #fee2e2;
+    color: #dc2626;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    -webkit-text-fill-color: initial;
+    /* Reset gradient */
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+#emergency-stop-btn:hover {
+    background: #fecaca;
+    transform: scale(1.1);
+}
+
+.timer-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    padding: 2px 10px;
+    /* Reduced padding */
+    height: 36px;
+    /* Fixed height match */
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.timer-controls input {
+    width: 40px;
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: #111827;
+    outline: none;
+}
+
+.timer-controls input:focus {
+    border-bottom-color: #2563eb;
+}
+
+.icon-btn-small {
+    background: #f3f4f6;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    /* Más grande y clicable */
+    height: 32px;
+    border-radius: 50%;
+    /* Circulares */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b5563;
+    transition: all 0.2s;
+}
+
+.icon-btn-small:hover {
+    background: #e5e7eb;
+    color: #000;
+    transform: scale(1.05);
+}
+
+#start-timer-btn {
+    color: #059669;
+    /* Verde sutil */
+    background: #ecfdf5;
+}
+
+#start-timer-btn:hover {
+    background: #d1fae5;
+}
+
+#stop-timer-btn {
+    color: #dc2626;
+    /* Rojo sutil */
+    background: #fef2f2;
+}
+
+#stop-timer-btn:hover {
+    background: #fee2e2;
+}
+
+
+/* Clock */
+.clock-display {
+    font-weight: 700;
+    color: #111827;
+    font-size: 1.1rem;
+    /* Más grande como pidió */
+    background: rgba(0, 0, 0, 0.04);
+    padding: 6px 12px;
+    border-radius: 8px;
+    letter-spacing: 0.02em;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Modal Styles --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    /* Mantener flex para que fade-in funcione bien sin display:none brusco, o usar visibility */
+    visibility: hidden;
+}
+
+.modal-content.glass-panel {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 24px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 10px;
+}
+
+.modal-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 6px;
+}
+
+.glass-select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #111;
+    outline: none;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.glass-select:hover {
+    border-color: #d1d5db;
+}
+
+.glass-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.hint {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* --- Area de Trabajo (Resto del Layout) --- */
+#whiteboard {
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    background-image:
+        linear-gradient(#e5e7eb 1px, transparent 1px),
+        linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+    background-size: 20px 20px;
+    touch-action: none;
+    /* Prevent scrolling gestures on canvas */
+}
+
+#whiteboard.eraser-active {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M18 13l-5-5L3 18l5 5 10-10-5-5z"/></svg>') 0 24, auto;
+    /* Approximate eraser cursor */
+}
+
+/* Floating Toolbar (Excalidraw Style - Enhanced) */
+.whiteboard-controls.floating-toolbar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 6px 12px;
+    border-radius: 12px;
+    /* Pill shapeish / rounded rect */
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.whiteboard-controls.floating-toolbar:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.tool-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #64748b;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tool-btn:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #1e293b;
+}
+
+.tool-btn.active {
+    background: #eff6ff;
+    color: var(--accent-color);
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.tool-btn.danger:hover {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 20px;
+    background: #e2e8f0;
+    margin: 0 4px;
+}
+
+.btn-icon.danger:hover {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+/* Inputs customization */
+input[type="color"] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+input[type="range"].slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    background: transparent;
+}
+
+input[type="range"].slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    margin-top: -5px;
+}
+
+input[type="range"].slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: #e2e8f0;
+    border-radius: 2px;
+}
+
+/* --- PIANO CONTAINER --- */
+/* Se sitúa entre el workspace y la barra de controles */
+#piano-container-wrapper {
+    flex-shrink: 0;
+    /* No encoger */
+    background: #1e1e1e;
+    /* Fondo más suave */
+    border-top: 1px solid #333;
+    padding: 0;
+    /* Sin padding para el SVG full width */
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+    z-index: 50;
+    height: 160px;
+    /* Altura fija para el contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#virtual-piano {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    /* Scroll oculto pero funcional */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+#virtual-piano::-webkit-scrollbar {
+    display: none;
+}
+
+svg.piano-svg {
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    /* Centrar si es más pequeño, aunque será ancho */
+    flex-shrink: 0;
+    min-width: 100%;
+}
+
+/* SVG KEY STYLES (Ported from midi-jar) */
+
+/* Definiciones de gradientes y estilos básicos */
+.piano-key-white {
+    fill: url(#whiteKeyGradient);
+    stroke: #aaa;
+    stroke-width: 0.5px;
+    transition: fill 0.05s ease;
+}
+
+.piano-key-black {
+    fill: url(#blackKeyGradient);
+    stroke: #000;
+    stroke-width: 0.5px;
+    transition: fill 0.05s ease;
+}
+
+/* Textos */
+.piano-key-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    pointer-events: none;
+    /* Click through */
+    opacity: 0.7;
+}
+
+.piano-key-text.white-text {
+    fill: #444;
+}
+
+.piano-key-text.black-text {
+    fill: #ccc;
+}
+
+/* Active States */
+.piano-key-white.active {
+    fill: #ddd;
+    /* Fallback */
+}
+
+.piano-key-black.active {
+    fill: #333;
+    /* Fallback */
+}
+
+/* Local Player */
+.piano-key-white.active.local {
+    fill: var(--key-active-local);
+}
+
+.piano-key-black.active.local {
+    fill: var(--key-active-local);
+}
+
+/* Remote Player */
+.piano-key-white.active.remote {
+    fill: var(--key-active-remote);
+}
+
+.piano-key-black.active.remote {
+    fill: var(--key-active-remote);
+}
+
+#midi-status {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #666;
+    font-size: 0.7rem;
+    font-family: monospace;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* --- CONTROLS BAR --- */
+.controls-bar {
+    height: 70px;
+    background-color: rgba(15, 23, 42, 0.9);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-shrink: 0;
+    backdrop-filter: blur(10px);
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.2s;
+}
+
+.control-btn:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.control-btn.active {
+    background: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+.control-btn.danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.control-btn.danger:hover {
+    background: #ef4444;
+    color: #fff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .workspace {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .video-section,
+    .tools-panel {
+        flex: none;
+        height: 50%;
+        /* Mitad y mitad en móvil */
+    }
+
+    .tools-panel {
+        min-width: 0;
+    }
+}
+
+
+
+.input-group {
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--brand-white);
+    opacity: 0.9;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.9rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--brand-white);
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.input-field:focus {
+    border-color: var(--brand-accent);
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 4px rgba(238, 162, 19, 0.1);
+    /* Brand accent shadow */
+}
+
+.btn {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: var(--brand-accent);
+    color: #0b2046;
+    /* Contrast text on yellow/gold */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn:hover {
+    background: #FFB733;
+    /* Lighter gold */
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(238, 162, 19, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--brand-white);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--brand-white);
+    transform: translateY(-1px);
+    box-shadow: none;
+}

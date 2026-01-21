@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ligados Online - Plataforma Musical</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="landing-hero">
+        <img src="img/logo.png" alt="Ligados Online" class="hero-logo">
+        <h1 class="hero-title">Ligados Online</h1>
+        <p class="hero-subtitle">Plataforma educativa musical especializada. Conecta, aprende y crea en tiempo real.</p>
+
+        <div class="action-card">
+            <div class="input-group">
+                <label for="room-id">Código de Sala</label>
+                <input type="text" id="room-id" class="input-field" placeholder="Ej: musica-101">
+            </div>
+
+            <button onclick="joinRoom()" class="btn">
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+                Ingresar a Sala
+            </button>
+
+            <button onclick="createRoom()" class="btn btn-secondary">
+                Crear Nueva Sala
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function joinRoom() {
+            const roomId = document.getElementById('room-id').value;
+            if (roomId) {
+                window.location.href = `/room?id=${roomId}`;
+            } else {
+                alert('Por favor ingresa un nombre para la sala.');
+            }
+        }
+
+        function createRoom() {
+            const randomId = Math.random().toString(36).substring(7);
+            window.location.href = `/room?id=${randomId}`;
+        }
+    </script>
+</body>
+
+</html>

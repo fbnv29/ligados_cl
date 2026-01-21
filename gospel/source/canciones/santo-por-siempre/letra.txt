@@ -1,0 +1,14 @@
+---
+title: "Santo por Siempre"
+artist: "Elevation Worship"
+key: "G"
+---
+[VERSO]
+Bendito sea <soprano>Tu</soprano> nombre
+Jesús, <tenor>Te adoramos</tenor>
+
+[CORO]
+<soprano>Santo</soprano>
+<alto>Santo</alto>
+<tenor>Santo</tenor>
+por siempre

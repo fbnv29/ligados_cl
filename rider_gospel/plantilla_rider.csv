@@ -1,0 +1,34 @@
+SECTION,COL1,COL2,COL3,COL4
+INFO,Rider Técnico,Gospel Praise Concepción,Version 2.1 - 2026,Enero 2026
+INPUT,01,Bombo,Shure Beta 52,Gate
+INPUT,02,Caja,Shure SM57,Comp
+INPUT,03,Hi-Hat,Shure SM81,
+INPUT,04,Tom 1,Sennheiser e604,Gate
+INPUT,05,Tom 2,Sennheiser e604,Gate
+INPUT,06,Floor Tom,Sennheiser e604,Gate
+INPUT,07,Overhead L,Shure SM81,
+INPUT,08,Overhead R,Shure SM81,
+INPUT,09,Bajo,D.I. Box,Activa
+INPUT,10,Guitarra,Shure SM57,
+INPUT,11,Teclado L,D.I. Box,Stereo
+INPUT,12,Teclado R,D.I. Box,Stereo
+INPUT,13,Voz Director,Shure Beta 58,Wireless
+INPUT,14,Voz Soprano 1,Shure SM58,
+INPUT,15,Voz Soprano 2,Shure SM58,
+INPUT,16,Voz Alto 1,Shure SM58,
+INPUT,17,Voz Alto 2,Shure SM58,
+INPUT,18,Voz Tenor 1,Shure SM58,
+INPUT,19,Voz Tenor 2,Shure SM58,
+MONITOR,Mezcla 1 (AUX 1): Batería (In-Ear / Wired),,,
+MONITOR,Mezcla 2 (AUX 2): Bajo,,,
+MONITOR,Mezcla 3 (AUX 3): Teclado,,,
+MONITOR,Mezcla 4 (AUX 4): Guitarra,,,
+MONITOR,Mezcla 5 (AUX 5-6): Voces Frontales (Side Fills o Cuñas),,,
+BACKLINE,Batería Standard 5 cuerpos (DW, Yamaha),,,
+BACKLINE,Amplificador de Bajo (Ampeg, Hartke),,,
+BACKLINE,Amplificador de Guitarra (Fender Twin, Vox AC30),,,
+BACKLINE,Atriles de Teclado,
+BACKLINE,Sillín de Batería,
+CONTACT,Director Musical,Fabián,+56 9 1234 5678,contacto@gospelpraise.cl
+CONTACT,Ingeniero FOH,Nombre Ing.,+56 9 8765 4321,sonido@ejemplo.com
+PLOT,https://placehold.co/800x400/e0e0e0/333?text=Stage+Plot+Image,,,
