@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Gospel - Subir Canción</title>
+    <style>
+        :root {
+            --brand-blue: #0b2046;
+            --brand-white: #FFF4e7;
+            --brand-accent: #EEA213;
+            --secondary-bg: #091a38;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Futura', 'Century Gothic', 'Tw Cen MT', sans-serif;
+            background-color: var(--brand-white);
+            color: var(--brand-blue);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--brand-blue);
+            color: var(--brand-white);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1rem;
+        }
+
+        .logo-area {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            color: var(--brand-accent);
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            padding: 1rem;
+            color: var(--brand-white);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--brand-accent);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 3rem;
+            background-color: #f4f6f8;
+            overflow-y: auto;
+        }
+
+        h1 {
+            color: var(--brand-blue);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--brand-accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .upload-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            max-width: 700px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--secondary-bg);
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+            white-space: pre-wrap;
+        }
+
+        .file-drop-zone {
+            border: 2px dashed var(--brand-blue);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            background: rgba(11, 32, 70, 0.05);
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-drop-zone:hover {
+            background: rgba(11, 32, 70, 0.1);
+        }
+
+        .btn-submit {
+            background-color: var(--brand-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary-bg);
+        }
+
+        .helper-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="logo-area">Admin Gospel</div>
+        <a class="nav-link active">Subir Canción</a>
+        <a class="nav-link">Lista de Canciones</a>
+        <a class="nav-link">Configuración</a>
+    </aside>
+
+    <main class="main-content">
+        <h1>Nueva Canción Gospel</h1>
+
+        <form class="upload-form" id="songUploadForm">
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="title">Título</label>
+                        <input type="text" id="title" placeholder="Ej: Santo por Siempre" required>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="artist">Artista / Autor</label>
+                        <input type="text" id="artist" placeholder="Ej: Elevation Worship">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="key">Tonalidad (Key)</label>
+                        <select id="key">
+                            <option value="C">C (Do Mayor)</option>
+                            <option value="D">D (Re Mayor)</option>
+                            <option value="E">E (Mi Mayor)</option>
+                            <option value="F">F (Fa Mayor)</option>
+                            <option value="G">G (Sol Mayor)</option>
+                            <option value="A">A (La Mayor)</option>
+                            <option value="B">B (Si Mayor)</option>
+                            <!-- Add minors if needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="tempo">BPM (Tempo)</label>
+                        <input type="text" id="tempo" placeholder="Ej: 72">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lyrics">Letra y Acordes</label>
+                <textarea id="lyrics" placeholder="Pega aquí la letra con la estructura..."></textarea>
+                <div class="helper-text">Se recomienda usar formato ChordPro o texto plano limpio.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Audio de Referencia (MP3)</label>
+                <div class="file-drop-zone" id="dropZoneAudio">
+                    <p>Subir MP3 Principal</p>
+                    <input type="file" id="audioInput" accept=".mp3, .wav" style="display: none;">
+                </div>
+                <small id="audioNameDisplay"></small>
+            </div>
+
+            <button type="submit" class="btn-submit">Publicar Canción</button>
+        </form>
+    </main>
+
+    <script>
+        const dropZone = document.getElementById('dropZoneAudio');
+        const audioInput = document.getElementById('audioInput');
+        const audioNameDisplay = document.getElementById('audioNameDisplay');
+
+        dropZone.addEventListener('click', () => audioInput.click());
+
+        audioInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                audioNameDisplay.textContent = "Audio: " + e.target.files[0].name;
+            }
+        });
+
+        document.getElementById('songUploadForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Enviando datos al backend...');
+            // Implementar fetch POST a /api/upload/song
+        });
+    </script>
+</body>
+
+</html>

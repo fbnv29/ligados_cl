@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Ligados</title>
+    <style>
+        :root {
+            --brand-blue: #0b2046;
+            --brand-white: #FFF4e7;
+            --brand-accent: #EEA213;
+            --secondary-bg: #091a38;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Futura', 'Century Gothic', 'Tw Cen MT', sans-serif;
+            background-color: var(--brand-blue);
+            color: var(--brand-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--brand-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Search Bar Styles */
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--brand-white);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 244, 231, 0.6);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--brand-accent);
+            box-shadow: 0 4px 25px rgba(238, 162, 19, 0.3);
+        }
+
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .category-card {
+            background: rgba(9, 26, 56, 0.6);
+            border: 1px solid rgba(255, 244, 231, 0.1);
+            padding: 2rem 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            background: rgba(238, 162, 19, 0.1);
+            border-color: var(--brand-accent);
+        }
+
+        .icon {
+            font-size: 2.5rem;
+        }
+
+        .category-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--brand-white);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1>Biblioteca Ligados</h1>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Buscar partitura, autor o canción...">
+        </div>
+
+        <div class="categories-grid">
+            <div class="category-card" onclick="alert('Abriendo sección Piano...')">
+                <span class="icon">🎹</span>
+                <span class="category-title">Piano</span>
+            </div>
+            <div class="category-card" onclick="alert('Abriendo sección Guitarra...')">
+                <span class="icon">🎸</span>
+                <span class="category-title">Guitarra</span>
+            </div>
+            <div class="category-card" onclick="alert('Abriendo sección Canto...')">
+                <span class="icon">🎤</span>
+                <span class="category-title">Canto</span>
+            </div>
+            <div class="category-card" onclick="alert('Abriendo sección Violín...')">
+                <span class="icon">🎻</span>
+                <span class="category-title">Violín</span>
+            </div>
+            <div class="category-card" onclick="alert('Abriendo sección Batería...')">
+                <span class="icon">🥁</span>
+                <span class="category-title">Batería</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

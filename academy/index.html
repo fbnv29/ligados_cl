@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Ligados</title>
+    <style>
+        :root {
+            --brand-blue: #0b2046;
+            --brand-white: #FFF4e7;
+            --brand-accent: #EEA213;
+            --secondary-bg: #091a38;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Futura', 'Century Gothic', 'Tw Cen MT', sans-serif;
+            background-color: var(--brand-blue);
+            color: var(--brand-white);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--secondary-bg);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 244, 231, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--brand-white);
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--brand-white);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--brand-accent);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: radial-gradient(circle at center, var(--secondary-bg) 0%, var(--brand-blue) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--brand-accent);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--brand-accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--secondary-bg);
+            margin-top: auto;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">LIGADOS ACADEMY</a>
+        <nav>
+            <a href="#about">Nosotros</a>
+            <a href="#contact">Contacto</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Conectamos a través de la música</h1>
+        <p>Formación musical integral con tecnología de vanguardia.</p>
+    </div>
+
+    <div class="container">
+        <section id="about" class="section">
+            <h2>Quiénes Somos</h2>
+            <p>Ligados es más que una academia de música; es un ecosistema educativo diseñado para conectar profesores y alumnos en tiempo real, rompiendo las barreras de la distancia con nuestra propia tecnología de aula virtual.</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contacto</h2>
+            <p>¿Interesado en aprender? Contáctanos:</p>
+            <p>📧 contacto@ligados.cl</p>
+            <p>📞 +56 9 1234 5678</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ligados. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

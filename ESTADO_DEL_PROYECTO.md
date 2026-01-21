@@ -1,44 +1,41 @@
 # Estado del Proyecto: Ligados CL
 
-Este archivo resume el estado actual y la estructura del proyecto "Ligados CL" para facilitar la restauración del contexto en futuras sesiones con el asistente.
+Este archivo resume la arquitectura completa y el estado actual del monorepo "Ligados CL".
+**Ruta raíz:** `/Users/fabian/Documents/Proyectos HTML/ligados_cl`
+**Repositorio:** `ligados_cl`
 
-## 📂 Estructura General
-Ruta raíz: `/Users/fabian/Documents/Proyectos HTML/ligados_cl`
+## state: ✅ LISTO PARA GITHUB / RENDER
 
-El proyecto funciona como un monorepo que agrupa varias aplicaciones relacionadas con la música y la gestión educativa/gospel.
+## 🏗️ Arquitectura y Visión
+El ecosistema Ligados separa estrictamente la **administración (carga de datos)** de la **visualización pública**, conectadas por una API Central.
 
-### 1. 🎹 App Ligados Online (`/app`)
-Plataforma web para clases de música remotas.
-- **Tecnologías:** Node.js, Express, Socket.IO, WebRTC, Web MIDI API.
-- **Estado:** En desarrollo activo.
-- **Características Clave:**
-  - Videollamada integrada.
-  - Pizarra interactiva (Whiteboard) tipo Excalidraw Sincronizada.
-  - Piano Virtual MIDI sincronizado entre profesor y alumno.
-- **Comandos:**
-  - `npm run dev` (Inicia servidor en puerto 3000).
+| Componente Público | Directorio | Dominio | Descripción |
+| :--- | :--- | :--- | :--- |
+| **1. Academy** | `/academy` | `ligados.cl` | Landing Page institucional. |
+| **2. App** | `/app` | `app.ligados.cl`| Aula Virtual (Clases, Pizarra, Piano). |
+| **3. Gospel** | `/gospel` | `gospel.ligados.cl` | **Visualizador**. Corro en raíz (`/gospel`). |
+| **4. Rider** | `/rider_gospel` | `rider.ligados.cl` | Generador de Rider Técnico. |
+| **5. Biblioteca** | `/biblioteca` | `biblioteca.ligados.cl` | **Visualizador**. Alumnos buscan partituras. |
 
-### 2. 🎼 Repertorio Gospel (`/gospel`)
-Sistema de gestión y visualización de canciones para coro.
-- **Estructura:**
-  - `source/`: Fuente de verdad (letras en .txt y audios .mp3).
-  - `tools/`: Scripts en Python (`build.py`, `validate.py`) para generar la web.
-  - `docs/`: Sitio web estático generado (build target).
-- **Flujo de Trabajo:**
-  - Agregar canción en `source/canciones/`.
-  - Crear `letra.txt` con metadata.
-  - Ejecutar `python tools/build.py`.
+| Componente Admin | Directorio | Dominio | Descripción |
+| :--- | :--- | :--- | :--- |
+| **6. Admin Gospel** | `/admin-gospel` | `admin-gospel...` | **Gestor**. Staff sube letras/audios -> Backend. |
+| **7. Admin Biblioteca** | `/admin-biblioteca` | `admin-biblioteca...` | **Gestor**. Staff sube PDFs -> Backend. |
 
-### 3. 📋 Rider Gospel (`/rider_gospel`)
-Generador de Rider Técnico con estética Apple.
-- **Tecnologías:** HTML, CSS, JS plano.
-- **Datos:** Se alimenta de `data.js` o CSV (`plantilla_rider.csv`).
+| Backend | Directorio | Puerto | Descripción |
+| :--- | :--- | :--- | :--- |
+| **8. API Central** | `/backend` | `4000` | **Node.js**. Recibe archivos y guarda en `/public-uploads`. |
 
-## 🔄 Contexto Reciente (Historial)
-- **App:** Se ha trabajado en refinar el layout de `room.html`, mejorando la disposición de la cámara y la pizarra, y asegurando que sea responsive.
-- **Gospel:** Se documentó el proceso de "Cómo agregar canciones" y se estandarizó el uso de scripts de Python para la actualización.
-- **General:** Limpieza para preparación de GitHub y mejoras de UI.
+## 🛠️ Guía de Despliegue (Render)
+
+### 1. Servicios Web (Node.js)
+*   **App:** Root: `app`, Command: `npm start`.
+*   **Backend:** Root: `backend`, Command: `npm start`. (Necesita Discos Persistentes para `/public-uploads`).
+
+### 2. Sitios Estáticos
+*   **Academy, Rider, Biblioteca, Admin-*, Gospel:**
+    *   Root: `[nombre_carpeta]`
+    *   Publish Directory: `.` (o `docs` en caso de Gospel si se configura build).
 
 ## 🤖 Instrucciones para el Asistente
-Cuando inicies una nueva sesión, pídele al asistente:
 > "Lee el archivo `ESTADO_DEL_PROYECTO.md` para recuperar el contexto."

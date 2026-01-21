@@ -4,7 +4,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCE_DIR = os.path.join(BASE_DIR, 'source')
 CANCIONES_DIR = os.path.join(SOURCE_DIR, 'canciones')
-WEB_DIR = os.path.join(BASE_DIR, 'docs')
+WEB_DIR = BASE_DIR
 INDEX_JSON_PATH = os.path.join(WEB_DIR, 'index.json')
 
 # Validation rules
