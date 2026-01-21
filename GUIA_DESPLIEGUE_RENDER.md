@@ -7,6 +7,13 @@ Esta guía te llevará de la mano para subir tus aplicaciones de **Ligados** a I
 2.  Haz clic en el botón **"New +"** y selecciona las opciones según el tipo de servicio (ver abajo).
 3.  Conecta tu cuenta de GitHub y selecciona el repositorio **`ligados_cl`**.
 
+> 🚨 **IMPORTANTE: EL CONCEPTO CLAVE**
+> Tu repositorio es como un edificio con varios departamentos (`app`, `backend`, `gospel`).
+> En Render, debes crear un "Servicio" por cada departamento.
+> 
+> **Si te sale "Error 127"**, es porque Render intentó entrar al edificio (raíz) pero no le dijiste a qué puerta (carpeta) ir.
+> **Solución:** Asegúrate de llenar el campo **"Root Directory"** en la configuración de Render.
+
 ---
 
 ## 2. Desplegar el Backend (API)
@@ -16,7 +23,7 @@ Esta guía te llevará de la mano para subir tus aplicaciones de **Ligados** a I
 2.  Repo: `ligados_cl`.
 3.  **Name:** `ligados-backend` (o similar).
 4.  **Language:** Node.
-5.  **Root Directory:** `backend` (⚠️ Muy importante).
+5.  **Root Directory:** `backend.` (⚠️ Muy importante).
 6.  **Build Command:** `npm install`.
 7.  **Start Command:** `node index.js`.
 8.  **Plan:** Free.
